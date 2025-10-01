@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_siniestro_movilidad,access_fleet_siniestro_movilidad,model_fleet_siniestro_movilidad,,1,1,1,1
+access_fleet_siniestro_estatus,access_fleet_siniestro_estatus,model_fleet_siniestro_estatus,,1,1,1,1
+access_fleet_siniestro_tipo,access_fleet_siniestro_tipo,model_fleet_siniestro_tipo,,1,1,1,1
+access_fleet_siniestro_fase,access_fleet_siniestro_fase,model_fleet_siniestro_fase,,1,1,1,1
+access_fleet_siniestro_etapa,access_fleet_siniestro_etapa,model_fleet_siniestro_etapa,,1,1,1,1
+access_fleet_siniestro,access_fleet_siniestro,model_fleet_siniestro,,1,1,1,1

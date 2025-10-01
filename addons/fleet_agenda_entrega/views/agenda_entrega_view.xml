@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="agenda_entrega_view_form" model="ir.ui.view">
+            <field name="name">agenda.entrega.view.form</field>
+            <field name="model">agenda.entrega</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="etapa_id" widget="statusbar"/>
+                        <button name="crear_evento"
+                                type="object"
+                                class="btn btn-success"
+                                string="Registrar evento">
+                        </button>
+                        <field name="mostrar_evento" invisible="1"/>
+                        <button name="mostrar_eventos"
+                                type="object"
+                                class="btn btn-primary text-white"
+                                invisible="mostrar_evento == False">
+                             Eventos Pendientes:
+                            <field name="contador" widget="statinfo" nolabel="1"/>
+                        </button>
+                    </header>
+                    <sheet>
+                        <notebook>
+                            <page string="Solicitud" name="page_solicitud">
+                                <group>
+                                    <group string="Datos de dictamen" name="data_dictamen">
+                                        <field name="dictamen_id"/>
+                                        <field name="estatus_dictamen"/>
+                                        <field name="email_cliente" string="Email del cliente"/>
+                                        <field name="telefono_cliente" string="Teléfono del cliente"/>
+                                    </group>
+                                    <group string="Datos de solicitud" name="data_solicitud">
+                                        <field name="asesor_id"/>
+                                        <field name="num_empleado"/>
+                                        <field name="fecha_entrega"/>
+                                        <field name="lugar_entrega_id"/>
+                                        <field name="canalizacion_id"/>
+                                        <field name="indicaciones"/>
+                                    </group>
+                                </group>
+                                <group string="Información del vehículo" name="data_vehiculo">
+                                    <group>
+                                        <field name="vehiculo_id"/>
+                                        <field name="modelo_vehiculo_id"/>
+                                        <field name="version"/>
+                                        <field name="vin_sn"/>
+                                        <field name="condicion_vehiculo_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="color"/>
+                                        <field name="year"/>
+                                        <field name="producto_id"/>
+                                        <field name="plaza_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Crédito" name="page_credito">
+                                <group string="Mesa de control" name="data_mesa_control">
+                                    <field name="req_instrumentacion"/>
+                                    <field name="estatus_comprobante_deposito"/>
+                                </group>
+                            </page>
+                            <page string="Entrega" name="page_entrega">
+                                <group string="Entrega" name="data_entrega">
+                                    <field name="fecha_confirmada"/>
+                                    <field name="ejecutivo_id"/>
+                                    <field name="nota"/>
+                                </group>
+                                <notebook>
+                                    <page string="Evidencia de entrega">
+                                        <group>
+                                            <field name="autorizacion_uso"/>
+                                            <field name="foto_entrega" widget="image"/>
+                                        </group>
+                                    </page>
+                                </notebook>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="agenda_entrega_view_list" model="ir.ui.view">
+            <field name="name">agenda.entrega.view.list</field>
+            <field name="model">agenda.entrega</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="id"/>
+                    <field name="dictamen_id"/>
+                    <field name="asesor_id"/>
+                    <field name="vehiculo_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="agenda_entrega_action" model="ir.actions.act_window">
+            <field name="name">Agenda Entrega</field>
+            <field name="res_model">agenda.entrega</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="agenda_entrega_view_list"/>
+        </record>
+    </data>
+</odoo>

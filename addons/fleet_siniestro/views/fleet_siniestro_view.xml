@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="fleet_siniestro_view_form" model="ir.ui.view">
+            <field name="name">fleet.siniestro.view.form</field>
+            <field name="model">fleet.siniestro</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="etapa_id" widget="statusbar" options="{'clickable': true}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Información del siniestro">
+                                <field name="fase_id"/>
+                                <field name="aseguradora_id" required="1"/>
+                                <field name="siniestro_tipo_id" required="1"/>
+                                <field name="movilidad_id" required="1"/>
+                                <field name="folio"/>
+                                <field name="siniestro"/>
+                                <field name="siniestro_estatus_id"/>
+                            </group>
+                            <group string="Fechas de siniestro">
+                                <field name="fecha_ingreso_valuacion"/>
+                                <field name="fecha_ingreso_reparacion"/>
+                                <field name="fecha_compromiso_entrega"/>
+                                <field name="fecha_entrega"/>
+                                <field name="fecha_cierre"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Información del vehículo" name="data_vehiculo">
+                                <field name="vehiculo_id"/>
+                                <field name="numero_economico" readonly="1"/>
+                                <field name="vin_sn" readonly="1"/>
+                                <field name="producto_id" readonly="1"/>
+                                <field name="plaza_id" readonly="1"/>
+                            </group>
+                            <group string="Informacicón del cliente" name="data_conductor">
+                                <field name="cliente_id"/>
+                                <field name="cliente_email"/>
+                                <field name="cliente_telefono"/>
+                            </group>
+                        </group>
+                        <group string="Evento" name="data_evento">
+                            <field name="fecha_hora_suceso"/>
+                            <field name="fecha_hora_notifiacion"/>
+                            <field name="ubicacion"/>
+                            <field name="conductor"/>
+                            <field name="telefono_conductor"/>
+                            <field name="descripcion_siniestro"/>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="fleet_siniestro_view_list" model="ir.ui.view">
+            <field name="name">fleet.siniestro.view.list</field>
+            <field name="model">fleet.siniestro</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="id"/>
+                    <field name="vin_sn"/>
+                    <field name="plaza_id"/>
+                    <field name="aseguradora_id"/>
+                    <field name="siniestro"/>
+                    <field name="movilidad_id"/>
+                    <field name="siniestro_estatus_id"/>
+                    <field name="conductor"/>
+                    <field name="etapa_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="fleet_siniestro_action" model="ir.actions.act_window">
+            <field name="name">Siniestro</field>
+            <field name="res_model">fleet.siniestro</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="fleet_siniestro_view_list" />
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_poliza,access_fleet_poliza,model_fleet_poliza,,1,1,1,1
+access_fleet_poliza_tipo_cobertura,access_fleet_poliza_tipo_cobertura,model_fleet_poliza_tipo_cobertura,,1,1,1,1
+access_fleet_poliza_tipo_valor,access_fleet_poliza_tipo_valor,model_fleet_poliza_tipo_valor,,1,1,1,1

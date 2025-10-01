@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="fleet_customer_inherit_view_form" model="ir.ui.view">
+            <field name="name">fleet.customer.inherit.view.form</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state_id']" position="replace">
+                    <field name="state_id"/>
+                    <field name="baja" invisible="1"/>
+                    <field name="mostrar_driver" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//form/header/button[@name='action_accept_driver_change']" position="before">
+
+                    <button name="dar_baja"
+                            string="Dar de baja"
+                            type="object"
+                            class="btn-danger text-white"
+                            invisible="baja == True"
+                            force_save="1"/>
+                </xpath>
+
+                <xpath expr="//form/sheet/group[1]/group[1]" position="replace">
+                    <group string="Conductor" invisible="mostrar_driver == False">
+                        <field name="active" invisible="1"/>
+                        <field name="vehicle_type" invisible="1"/>
+                        <field name="driver_id" domain="['|', ('company_id', '=', False ), ('company_id', '=', company_id)]" widget="many2one_avatar"/>
+                        <field name="future_driver_id" widget="many2one_avatar"/>
+                        <field name="plan_to_change_car" groups="fleet.fleet_group_manager" invisible="vehicle_type != 'car'"/>
+                        <field name="plan_to_change_bike" groups="fleet.fleet_group_manager"  invisible="vehicle_type != 'bike'"/>
+                        <field name="next_assignation_date"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//widget[@name='web_ribbon']" position="replace">
+                    <widget name="web_ribbon" title="Baja" bg_color="text-bg-danger" invisible="baja == False"/>
+                </xpath>
+
+                <xpath expr="//field[@name='future_driver_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='page_model']/group/group/field[@name='model_year']" position="before">
+                    <field name="brand_id" string="Fabricante"/>
+                    <field name="nombre_modelo" />
+                     <field name="version" domain="[('model_id', '=', model_id)]"/>
+                </xpath>
+                <xpath expr="//field[@name='plan_to_change_car']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='manager_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='write_off_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="replace">
+                    <field name="es_gnv" required="1"/>
+                </xpath>
+
+                <xpath expr="//form/sheet/div/field[@name='tag_ids']" position="after">
+                    <group invisible="baja == False">
+                        <br/>
+                        <field name="baja" readonly="1"/>
+                        <field name="fecha_baja" readonly="1"/>
+                        <field name="motivo_baja_id" readonly="1" widget="badge" decoration-danger="1"/>
+                    </group>
+                    <field name="mostrar_fecha_prox_reacond" invisible="1"/>
+                    <group string="Reacondicionamiento" invisible="mostrar_fecha_prox_reacond == False">
+                        <field name="fecha_prox_reacondicionamiento" />
+                    </group>
+                </xpath>
+
+                <xpath expr="//field[@name='acquisition_date']" position="after">
+                    <field name="numero_motor"/>
+                    <field name="condicion_vehiculo_id"/>
+                    <field name="uso_vehiculo_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='vehicle_properties']" position="after">
+                    <group string="Información adicional" name="info_add">
+                        <group>
+                            <field name="numero_economico" />
+                            <field name="mostrar_sub_etapa" invisible="1"/>
+                            <field name="sub_etapa_id" invisible="mostrar_sub_etapa == False"/>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="ultimo_cambio_etapa" />
+                            <field name="flotilla_id"/>
+                            <field name="producto_id"/>
+                            <field name="plaza_id"/>
+                        </group>
+                    </group>
+                </xpath>
+
+                <xpath expr="//form/sheet/group[@name='info_add']" position="before">
+                    <group string="Proveedor" name="proveedor">
+                        <field name="proveedor_id" wiget="many2one"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Adquisición" name="adquisicion">
+                        <group >
+                            <group string="Datos de Adquisición">
+                                <field name="fecha_adquisicion"/>
+                                <field name="condicion_adquisicion_id"/>
+                            </group>
+                            <group string="Importes">
+                                <field name="importe_adquisicion"/>
+                                <field name="iva_adquisicion"/>
+                                <field name="importe_total_adquisicion"/>
+                                <field name="valor_residual_adquisicion"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Factura">
+                                <field name="factura"/>
+                                <field name="fecha_factura"/>
+                                <field name="folio_uuid"/>
+                                <field name="fecha_carta_porte"/>
+                                <field name="folio_carta_porte"/>
+                            </group>
+                            <group string="Orden de compra">
+                                <field name="fecha_recepcion"/>
+                                <field name="orden_compra"/>
+                                <field name="fecha_orden_compra"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Factura vehículo" name="factura_vehiculo">
+                                <field name="factura_vehiculo" widget="pdf_viewer"/>
+                            </page>
+                            <page string="Opción a compra" name="opcion_compra">
+                                <field name="opcion_compra" widget="pdf_viewer"/>
+                            </page>
+                        </notebook>
+                    </page>
+                </xpath>
+
+                <xpath expr="//field[@name='seats']" position="before">
+                    <field name="color_interior"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_adecuacion_catalogo,access_fleet_adecuacion_catalogo,model_fleet_adecuacion_catalogo,,1,1,1,1
+access_fleet_adecuacion,access_fleet_adecuacion,model_fleet_adecuacion,,1,1,1,1
