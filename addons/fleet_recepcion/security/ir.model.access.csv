@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fleet_recepcion_lugar,access_fleet_recepcion_lugar,model_fleet_recepcion_lugar,,1,1,1,1
-access_fleet_recepcion,access_fleet_recepcion,model_fleet_recepcion,,1,1,1,1

@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fleet_movimiento_misc,access_fleet_movimiento_misc,model_fleet_movimiento_misc,,1,1,1,1
-access_fleet_movimiento_misc_tipo,access_fleet_movimiento_misc_tipo,model_fleet_movimiento_misc_tipo,,1,1,1,1
-access_fleet_movimiento_misc_motivo,access_fleet_movimiento_misc_motivo,model_fleet_movimiento_misc_motivo,,1,1,1,1
-access_fleet_movimiento_misc_etapa,access_fleet_movimiento_misc_etapa,model_fleet_movimiento_misc_etapa,,1,1,1,1
-access_fleet_movimiento_misc_pago,access_fleet_movimiento_misc_pago,model_fleet_movimiento_misc_pago,,1,1,1,1
-access_fleet_movimiento_pago,access_fleet_movimiento_pago,model_fleet_movimiento_pago,,1,1,1,1

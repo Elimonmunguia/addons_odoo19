@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fleet_tramite,access_fleet_tramite,model_fleet_tramite,,1,1,1,1
-access_fleet_tramite_tipo,access_fleet_tramite_tipo,model_fleet_tramite_tipo,,1,1,1,1
-access_fleet_tramite_motivo_pago,access_fleet_tramite_motivo_pago,model_fleet_tramite_motivo_pago,,1,1,1,1
